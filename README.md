@@ -1,6 +1,6 @@
 ## Functions
 | Name | Arguments | Syntax | Meaning |
-| ---- | ---- | ---- | ---- | 
+| ---- | ---- | ---- | :----: | 
 | `sin` | 1 | `sin(x)`  | $\sin(x)$ |
 | `cos` | 1 | `cos(x)`  | $\cos(x)$ |
 | `tan` | 1 | `tan(x)` | $\tan(x)$ |
@@ -13,8 +13,8 @@
 | `exp` | 1 | `exp(x)` | $\exp(x)$ |
 | `log2` | 1 | `log2(x)` | $\log_2(x)$ |
 | `log` | 1 | `log(x)` | $\log(x)$ |
-| `abs` | 1 | `abs(x)` | $ \|x\|$ |
-| `sum` | 4 | `sum( f(k), k, n, m )` | $\sum_{k=n}^{m} f(k)$ |
+| `abs` | 1 | `abs(x)` | $\|x\|$ |
+| `sum` | 4 | `sum( f(k), k, n, m )` | $$\sum_{k=n}^{m} f(k)$$ |
 | `avg` | n | `avg( x_1, x_2, ..., x_n)` | $\dfrac{1}{n}(x_1 + x_2 + \dots + x_n)$|
 
 ## Operations 
