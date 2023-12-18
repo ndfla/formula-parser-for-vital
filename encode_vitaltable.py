@@ -47,7 +47,7 @@ def create_keyframe(position, float_wave):
     return keyframe_list
 
     
-def create_vitaltable(position, float_wave, filename):
+def create_vitaltable(position, float_wave, filename, out):
     
     js = {"author":"",
         "full_normalize":True,
@@ -61,7 +61,7 @@ def create_vitaltable(position, float_wave, filename):
         "remove_all_dc":True,
         "version":"1.0.7"}
     
-    save_file_at_dir('vitaltable', filename + '.vitaltable', json.dumps(js))
+    save_file_at_dir(out, filename + '.vitaltable', json.dumps(js))
 
 
 def save_file_at_dir(dir_path, filename, file_content, mode='w'):

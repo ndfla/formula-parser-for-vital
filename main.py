@@ -4,37 +4,22 @@ import parser_functions
 import encode_vitaltable
 
 def main():
-    
+    directory = 'vitaltable'
     filename = 'test_wave'
-    num_of_waves = 20
     
-    # formula = 'sin(2*pi*(3+ (y*19))*x ) + sin(2*pi*(abs(4 - (y*19)))*x * (y*19)) + sin(2*pi*5*x * (y*19))'
-
-    # formula = 'avg( sin(2*pi*x), sin(2*pi*w*x)>0.5, sin(2*pi*x)*(sin(2*pi*(w+3)*x)>0.5))'
-
-    # formula = ' case( abs(sin(2*pi*2*(x)))>0.5, sin(2*pi*x*w), 0 ) '
-
-    # formula = '2*avg(sin((2*w-1)*x*pi),(1-(2*w-1))*rand*0.1)'
-   
-    # formula = ' case( abs(sin(2*pi*2*x))>0.5, cos(2*pi*x*w*(2)), sin(2*pi*x*w*(-2)) )'
+    num_of_waves = 15
     
-    formula = 'sum( sin(2*pi*x*(7*i*(-w)))*(1/(7*i)) , i ,1, 40) + 2*sum( sin(2*pi*x*2*i*w)*(1/(i*2)) , i ,1, 40) '
+    formula = '(x*(y-0.5)-0.5)*sin(2*pi*x*w)'
     
-    # formula = 'sum(avg( sin(2*pi*x*i)/(2*i), abs(sin(2*pi*w*x))>0.5) , i,1,40 )'
-    
-    # formula = 'log2(2 - sin(2*pi*x*w))'
-
-    execute(formula, num_of_waves, filename)
+    execute(formula, num_of_waves, filename, directory)
     
 
-
-def execute(formula, num_of_waves, filename):
+def execute(formula, num_of_waves, filename, out):
     
     formula = formula.replace(' ', '')
 
     pattern = re.compile('[^a-zA-Z0-9\._]')
     result = pattern.finditer(formula)
-    
     
     splited_formula= []
     p = 0
@@ -49,18 +34,18 @@ def execute(formula, num_of_waves, filename):
     splited_formula = [word for word in splited_formula if word]
         
     splited_formula = parser_functions.expand_sum(splited_formula)
-  
-    if num_of_waves==1:
-        return [parser_functions.read_formula(splited_formula)], [0]
-    
-    w = np.arange(num_of_waves)+1
-    
-    y = np.arange(num_of_waves)/(num_of_waves-1)
-    
-    positions = np.floor(y*256)
     
     wave_list = []
     
+    w = np.arange(num_of_waves)+1
+    
+    if num_of_waves==1:
+        y = [0]
+        positions = [0]
+    else:
+        y = np.arange(num_of_waves)/(num_of_waves-1)
+        positions = np.floor(y*256)
+     
     for i in range(num_of_waves):
         formula = parser_functions.subs(splited_formula,'y', y[i])
         formula = parser_functions.subs(formula,'w', w[i])
@@ -78,7 +63,7 @@ def execute(formula, num_of_waves, filename):
             
         waves = [i/m for i in waves]
 
-        encode_vitaltable.create_vitaltable(positions, waves, filename)
+        encode_vitaltable.create_vitaltable(positions, waves, filename, out)
     
     return 
 

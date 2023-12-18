@@ -14,8 +14,10 @@
 | `log2` | 1 | `log2(x)` | $\log_2(x)$ |
 | `log` | 1 | `log(x)` | $\log(x)$ |
 | `abs` | 1 | `abs(x)` | $\|x\|$ |
-| `sum` | 4 | `sum( f(k), k, n, m )` | $$\sum_{k=n}^{m} f(k)$$ |
-| `avg` | n | `avg( x_1, x_2, ..., x_n)` | $\dfrac{1}{n}(x_1 + x_2 + \dots + x_n)$|
+| `sign` | 1 | `sign(x)` | $$ \begin{cases} 1 & (x > 0) \\ -1 & (x < 0) \\ 0 & (x = 0) \end{cases} $$ |
+| `sum` | 4 | `sum(f(k), k, n, m)` | $$\sum_{k=n}^{m} f(k)$$ |
+| `avg` | n | `avg(x_1, x_2, ..., x_n)` | $\dfrac{1}{n}(x_1 + x_2 + \dots + x_n)$|
+| `case` | 3 | `case(bool, f_1, f_2 )` | $$ \begin{cases} f_1 & (bool = 1) \\ f_2 & (bool = 0)  \end{cases} $$|
 
 ## Operations 
 
